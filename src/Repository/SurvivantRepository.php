@@ -40,6 +40,17 @@ class SurvivantRepository extends ServiceEntityRepository
                ->getQuery()
                ->getResult();
     }
+     public function nonHumain($race, $classe){
+        return $this->createQueryBuilder('s')
+                ->leftJoin('s.race', 'r')
+                ->leftJoin('s.classe', 'c')
+               ->andWhere('r.race_name != :race')
+               ->andWhere('c.class_name = :class')
+               ->setParameter('race', $race)
+               ->setParameter('class', $classe)
+               ->getQuery()
+               ->getResult();
+    }
     //    /**
     //     * @return Survivant[] Returns an array of Survivant objects
     //     */

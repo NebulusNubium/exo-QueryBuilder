@@ -18,6 +18,7 @@ final class HomeController extends AbstractController
         //recuperation de la requête GET qu'on stocke dans $filter
         $filter = $request->get('filter','all');
         $puissance = $request->get('puissance', 'all');
+        $classe = $request->get('classe', 'all');
         if($filter == 'asc'){
             $survivants = $repository->orderReverse();
             dump($filter);
@@ -26,6 +27,9 @@ final class HomeController extends AbstractController
             dump($filter);
         }elseif($filter == 'elfe' && $puissance >= 25){
             $survivants = $repository->elf($filter, $puissance);
+            dump($filter);
+        }elseif($filter == 'humain' && $classe == 'archer'){
+            $survivants = $repository->nonHumain($filter, $classe);
             dump($filter);
         }
         else{
