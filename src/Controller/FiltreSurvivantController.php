@@ -30,6 +30,9 @@ final class FiltreSurvivantController extends AbstractController
         $classe = $request->get('class');
         if(isset($race) && isset($classe) && isset($puissance)){
             $survivants = $repS->filter($race, $classe, $puissance);
+            if(empty($survivants)){
+                dd('No survivors left...');
+            }
         }else{
             $survivants = $repS->findAll();
             

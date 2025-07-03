@@ -10,14 +10,14 @@
                 <h4>Races</h4>
                 {% for race in races %}
                     <label>{{ race.RaceName }} </label>
-                    <input type="checkbox" name="race" value="{{ race.RaceName }}">
+                    <input type="radio" name="race" value="{{ race.RaceName }}">
                 {% endfor %}
             </div>
             <div>
                 <h4>Classes</h4>
                 {% for classe in classes %}
                     <label>{{ classe.ClassName }} </label>
-                    <input type="checkbox" name="class"  value="{{ classe.ClassName }}">
+                    <input type="radio" name="class"  value="{{ classe.ClassName }}">
                 {% endfor %}
             </div>
             <div>
