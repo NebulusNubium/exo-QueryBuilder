@@ -51,6 +51,19 @@ class SurvivantRepository extends ServiceEntityRepository
                ->getQuery()
                ->getResult();
     }
+         public function filter($race, $classe, $puissance){
+        return $this->createQueryBuilder('s')
+                ->leftJoin('s.race', 'r')
+                ->leftJoin('s.classe', 'c')
+               ->andWhere('r.race_name = :race')
+               ->andWhere('c.class_name = :class')
+               ->andWhere('s.puissance = :pui')
+               ->setParameter('race', $race)
+               ->setParameter('class', $classe)
+               ->setParameter('pui', $puissance)
+               ->getQuery()
+               ->getResult();
+    }
     //    /**
     //     * @return Survivant[] Returns an array of Survivant objects
     //     */

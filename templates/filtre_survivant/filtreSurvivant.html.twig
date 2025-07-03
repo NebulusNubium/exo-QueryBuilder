@@ -5,8 +5,30 @@
 {% block body %}
 <main>
     <div class="filter">
-      {# --VOTRE FORMULAIRE DE FILTRE ICI-- #}
+        <form class="formFilter" method="get" action="{{ path('app_filtre_survivant') }}">
+            <div>
+                <h4>Races</h4>
+                {% for race in races %}
+                    <label>{{ race.RaceName }} </label>
+                    <input type="checkbox" name="race" value="{{ race.RaceName }}">
+                {% endfor %}
+            </div>
+            <div>
+                <h4>Classes</h4>
+                {% for classe in classes %}
+                    <label>{{ classe.ClassName }} </label>
+                    <input type="checkbox" name="class"  value="{{ classe.ClassName }}">
+                {% endfor %}
+            </div>
+            <div>
+                <h4>Puissance</h4>
+                    <input type="number" name="puissance">
+                </div>
+            <button type="submit">Apply filters</button>
+
+        </form>
     </div>
+
     
     <section id="survivants" >
         {% for survivant in survivants %}
