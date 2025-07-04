@@ -3,6 +3,13 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<h1>Puissance de chaque race</h1>
-   
+{#
+   <p>Elfes: {{elfes[1]}}</p>  #}
+
+    <h1>Puissance de chaque race</h1>
+    <ul>
+    {% for race, puissance in puissanceRace %}
+        <li><strong>{{ race }} </strong>: {{ puissance }} puissance</li>
+    {% endfor %}
+    </ul>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Survivant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\Functions\SumFunction;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -57,12 +58,23 @@ class SurvivantRepository extends ServiceEntityRepository
                 ->leftJoin('s.classe', 'c')
                ->andWhere('r.race_name = :race')
                ->andWhere('c.class_name = :class')
-               ->andWhere('s.puissance = :pui')
+               ->andWhere('s.puissance > :pui')
                ->setParameter('race', $race)
                ->setParameter('class', $classe)
                ->setParameter('pui', $puissance)
                ->getQuery()
                ->getResult();
+    }
+
+        public function power($race){
+        $qb=  $this->createQueryBuilder('s')
+                ->select('SUM(s.puissance)')
+                ->leftJoin('s.race', 'r')
+               ->andWhere('r.race_name = :race')
+               ->setParameter('race', $race)
+               ->getQuery()
+               ->getResult();
+            return $qb[0];
     }
     //    /**
     //     * @return Survivant[] Returns an array of Survivant objects
